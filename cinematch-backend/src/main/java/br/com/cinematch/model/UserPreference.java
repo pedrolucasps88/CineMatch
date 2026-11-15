@@ -1,7 +1,13 @@
 package br.com.cinematch.model;
-
+import jakarta.persistence.*;
+@Entity
+@Table(name = "usersPreference")
 public class UserPreference {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne 
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     private String genre;
     private int preferenceWeight;

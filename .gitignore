@@ -42,3 +42,8 @@ build/
 
 # Compiled Java files
 *.class
+
+# SQLite database files
+cinematch-backend/data/*.db
+cinematch-backend/data/*.db-shm
+cinematch-backend/data/*.db-wal

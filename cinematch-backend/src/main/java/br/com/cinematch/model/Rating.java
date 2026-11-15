@@ -1,11 +1,19 @@
 package br.com.cinematch.model;
-
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
-
+@Entity
+@Table(name = "rating")
 public class Rating {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne 
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false) 
     private Movie movie;
+    @Enumerated(EnumType.STRING)
     private RatingType type;
     private LocalDateTime createdAt;
 

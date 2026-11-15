@@ -1,10 +1,16 @@
 package br.com.cinematch.model;
-
+import jakarta.persistence.*;
+@Entity
+@Table(name = "movie")
 public class Movie {
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String imdbId;
     private String title;
     private String year;
+    @Enumerated(EnumType.STRING)
     private MediaType type;
     private String genre;
     private String plot;
