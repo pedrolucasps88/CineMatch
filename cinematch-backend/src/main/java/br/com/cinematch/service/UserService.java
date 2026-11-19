@@ -20,23 +20,23 @@ public class UserService {
 
     public boolean registerUser(String name,String email,String password,String bio,String pictureUrl){
         if(name==null || email == null || password == null){
-            System.out.println("Alguma informação veio nula");
+            System.out.println("null information");
             return false;
         }else{
             if(name.isBlank() || email.isBlank() || password.isBlank()){
-                System.out.println("Alguma informação veio vazia");
+                System.out.println("empty information");
                 return false;
             }else{
                 String emailNormalized = email.trim().toLowerCase(Locale.ROOT);   
                 if (repository.existsByEmail(emailNormalized)){
-                    System.out.println("Email ja existente");
+                    System.out.println("email already exists");
                     return false;
                 }else{
                     LocalDateTime created = LocalDateTime.now();
                     String passwordHash= encoder.encode(password);   
                     User user = new User(name,emailNormalized,passwordHash,bio,pictureUrl,created);
                     repository.save(user);
-                    System.out.println("Usuario criado!");
+                    System.out.println("User created!");
                     return true;
                 }
             }
@@ -49,7 +49,7 @@ public class UserService {
             User findeduser = user.get();
             return findeduser;
         }else{
-            System.out.println("Id não encontrado");
+            System.out.println("Id not found!");
             return null;
         }
     }
@@ -57,7 +57,7 @@ public class UserService {
 
     public User getUserByEmail(String email){
         if(email == null || email.isBlank()){
-            System.out.println("email invalido");
+            System.out.println("invalid email");
             return null;
         }
 
@@ -67,17 +67,17 @@ public class UserService {
             User findeduser = user.get();
             return findeduser;
         }else{
-            System.out.println("email não encontrado");
+            System.out.println("email not found");
             return null;
         }
     }
 
     public boolean updateUser(Long id,String name,String bio,String pictureUrl){
         if(id == null || name == null || name.isBlank()){
-        System.out.println("Dados invalidos");
+        System.out.println("invalid data");
         return false;
         }
-        
+
         if(repository.existsById(id)){
             User user = getUserById(id);
 
@@ -94,10 +94,10 @@ public class UserService {
             user.setUpdatedAt(LocalDateTime.now());
 
             repository.save(user);
-            System.out.println("Dados atualizados");
+            System.out.println("updated data");
             return true;
         }else{
-            System.out.println("Id inexistente");
+            System.out.println("Id not found");
             return false;
         }
     }
@@ -106,10 +106,10 @@ public class UserService {
         if(repository.existsById(id)){
             User user = getUserById(id);
             repository.delete(user);
-            System.out.println("Usuario removido");
+            System.out.println("User deleted");
             return true;
         }else{
-            System.out.println("id inexistente");
+            System.out.println("id not found");
             return false;
         }
 

@@ -19,6 +19,13 @@ public class Rating {
 
     public Rating(){}
 
+    public Rating(User user, Movie movie, RatingType type) {
+    this.user = user;
+    this.movie = movie;
+    this.type = type;
+    this.createdAt = LocalDateTime.now();
+    }
+
     public Long getId() {
         return id;
     }
