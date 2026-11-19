@@ -22,6 +22,18 @@ public class User {
 
     public User(){}
 
+    public User(String name, String email, String password, String bio, String pictureUrl, LocalDateTime created) {
+        this.name = name;
+        this.email = email;
+        this.passwordHash = password;
+        this.bio = bio;
+        this.profilePictureUrl = pictureUrl;
+        this.createdAt = created;
+        this.updatedAt = created;
+        this.active = true;
+        
+    }
+
     public Long getId() {
         return id;
     }
